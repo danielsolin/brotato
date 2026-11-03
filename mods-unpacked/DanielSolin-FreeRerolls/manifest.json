@@ -1,0 +1,17 @@
+{
+  "name": "FreeRerolls",
+  "namespace": "DanielSolin",
+  "version_number": "0.1.0",
+  "description": "Makes shop and level-up rerolls free.",
+  "website_url": "https://github.com/danielsolin/brotato",
+  "dependencies": [],
+  "extra": {
+    "godot": {
+      "authors": ["Daniel Solin"],
+      "tags": ["Cheats"],
+      "incompatibilities": [],
+      "compatible_mod_loader_version": ["6.2.0", "6.3.0"],
+      "compatible_game_version": ["1.2.0.1"]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/.godot/
+/dist/
+__pycache__/
+*.py[cod]
+*.import
