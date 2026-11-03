@@ -1,0 +1,17 @@
+{
+  "name": "RelatedEffects",
+  "namespace": "DanielSolin",
+  "version_number": "0.1.0",
+  "description": "Previews stat changes caused by active stat-scaling effects.",
+  "website_url": "https://github.com/danielsolin/brotato",
+  "dependencies": [],
+  "extra": {
+    "godot": {
+      "authors": ["Daniel Solin"],
+      "tags": ["UI"],
+      "incompatibilities": [],
+      "compatible_mod_loader_version": ["6.2.0", "6.3.0"],
+      "compatible_game_version": ["1.2.0.1"]
+    }
+  }
+}
