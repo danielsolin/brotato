@@ -1,25 +1,54 @@
 # Brotato Mods
 
-Mods for Brotato using its built-in Godot ModLoader.
+Three mods for Brotato's built-in ModLoader. The manifests target Brotato
+1.2.0.1 and ModLoader 6.2 or 6.3.
 
-## Current mods
+## NightGrind
 
-- `DanielSolin-FreeRerolls` makes shop and level-up rerolls free.
-- `DanielSolin-RelatedEffects` previews stat changes caused by active
-  stat-scaling effects.
-- `DanielSolin-NightGrind` forces Nightmare, reduces material drops, and
-  adds a shop option to replay the cleared wave.
+Turn Brotato into a grind: replay a wave to build your character before taking
+on the next one.
 
-The preview matches standard item effects against active stat links. It skips
-custom effect classes and fractional derived values.
+- Nightmare is the only difficulty available.
+- Dropped materials are reduced to one third of the usual amount on average.
+- After a wave, choose **Replay** to play it again or **Next** to advance.
+  Advancing asks for confirmation.
+- Harvesting has no effect, including negative Harvesting.
+- Pick up dropped materials by moving over them. Materials left on the ground
+  at the end of a wave disappear.
+- Automatic material attraction and Lootworm are disabled. Baby Gecko,
+  Sifd's Relic and Lootworm are excluded from the shop.
 
-## Development
+Items you already own remain in your inventory. These three items can still
+appear in crates, and their descriptions still mention disabled effects.
+Other effects on Baby Gecko and Sifd's Relic still work.
 
-- Keep each mod in `mods-unpacked/<Namespace>-<Name>/`.
-- Package a mod with `python3 scripts/package_mod.py <Namespace-ModName>`.
-- The ZIP appears in `dist/` with ModLoader's expected `mods-unpacked/` path.
-- Steam's default ModLoader profile scans subscribed Workshop IDs only.
-- Local mode sets `steam_workshop_enabled = false` and scans the game's `mods/` folder.
-- Restart Brotato after mod changes. Check `%APPDATA%/Brotato/logs/modloader.log`.
+## RelatedEffects
 
-Keep the repository limited to original mod code and assets.
+See how an item changes stats linked to another stat in the shop. For example,
+with Retromation's Hoodie, a Dodge change also shows the resulting Attack
+Speed change. Previews cover standard item effects; custom effects and
+fractional results are skipped.
+
+## FreeRerolls
+
+Reroll shop offers and level-up upgrades for free.
+
+## Installation
+
+These mods are provided as source. To build a ZIP, install Python 3, download
+this repository, and run the command for the mod you want from the repository
+directory:
+
+```sh
+python3 scripts/package_mod.py DanielSolin-NightGrind
+python3 scripts/package_mod.py DanielSolin-RelatedEffects
+python3 scripts/package_mod.py DanielSolin-FreeRerolls
+```
+
+Copy the desired ZIP from `dist/` into Brotato's `mods/` folder and enable it
+in your ModLoader profile. Restart the game after installing or changing mods.
+
+Your ModLoader configuration must scan local ZIP files. Steam's default
+ModLoader profile scans subscribed Workshop mods instead. On Windows, the game
+folder is typically `steamapps/common/Brotato/`; ModLoader's log is at
+`%APPDATA%/Brotato/logs/modloader.log`.
