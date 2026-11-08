@@ -8,15 +8,11 @@ Three mods for Brotato's built-in ModLoader. The manifests target Brotato
 Turn Brotato into a grind: replay a wave to build your character before taking
 on the next one.
 
-[Subscribe on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836266944)
-
-The NightGrind Workshop description is kept in
-[DanielSolin-NightGrind-steam-description.txt](DanielSolin-NightGrind-steam-description.txt).
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836266944)
 
 - Nightmare is the only difficulty available.
 - Dropped materials are reduced to one third of the usual amount on average.
-- Replay a wave for materials equal to twice its number, or advance for free.
-  Advancing asks for confirmation when replay is affordable.
+- Replay a wave for materials equal to twice its number, or advance as usual.
 - Harvesting has no effect, including negative Harvesting.
 - Automatic material attraction and Lootworm are disabled.
 - Materials left at the end of a wave disappear.
