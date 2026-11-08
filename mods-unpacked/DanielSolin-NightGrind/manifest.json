@@ -1,0 +1,17 @@
+{
+  "name": "NightGrind",
+  "namespace": "DanielSolin",
+  "version_number": "0.1.8",
+  "description": "Forces Nightmare and lets you replay cleared waves.",
+  "website_url": "https://github.com/danielsolin/brotato",
+  "dependencies": [],
+  "extra": {
+    "godot": {
+      "authors": ["Daniel Solin"],
+      "tags": ["Challenges", "New Mechanics"],
+      "incompatibilities": [],
+      "compatible_mod_loader_version": ["6.2.0", "6.3.0"],
+      "compatible_game_version": ["1.2.0.1"]
+    }
+  }
+}

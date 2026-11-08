@@ -7,6 +7,8 @@ Mods for Brotato using its built-in Godot ModLoader.
 - `DanielSolin-FreeRerolls` makes shop and level-up rerolls free.
 - `DanielSolin-RelatedEffects` previews stat changes caused by active
   stat-scaling effects.
+- `DanielSolin-NightGrind` forces Nightmare, reduces material drops, and
+  adds a shop option to replay the cleared wave.
 
 The preview matches standard item effects against active stat links. It skips
 custom effect classes and fractional derived values.
@@ -14,7 +16,7 @@ custom effect classes and fractional derived values.
 ## Development
 
 - Keep each mod in `mods-unpacked/<Namespace>-<Name>/`.
-- Package with `python3 scripts/package_mod.py DanielSolin-RelatedEffects`.
+- Package a mod with `python3 scripts/package_mod.py <Namespace-ModName>`.
 - The ZIP appears in `dist/` with ModLoader's expected `mods-unpacked/` path.
 - Steam's default ModLoader profile scans subscribed Workshop IDs only.
 - Local mode sets `steam_workshop_enabled = false` and scans the game's `mods/` folder.
