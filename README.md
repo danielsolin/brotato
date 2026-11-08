@@ -10,6 +10,8 @@ on the next one.
 
 [Subscribe on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836266944)
 
+The current Workshop description is kept in [steam-description.txt](steam-description.txt).
+
 - Nightmare is the only difficulty available.
 - Dropped materials are reduced to one third of the usual amount on average.
 - After a wave, choose **Replay** to play it again or **Next** to advance.

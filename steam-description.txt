@@ -1,0 +1,10 @@
+Turn Brotato into a grind!
+
+- Replay waves to build your character before taking on the next.
+- Nightmare only; one third material drops.
+- No Harvesting or automatic material attraction.
+- Uncollected materials disappear at wave end.
+- Lootworm disabled; Baby Gecko, Sifd's Relic and Lootworm excluded from the shop.
+
+For Brotato 1.2.0.1.
+Source: https://github.com/danielsolin/brotato
