@@ -1,6 +1,17 @@
 extends Node
 
 var _shop_actions = {}
+var _replay_buttons = []
+
+
+func _process(_delta: float) -> void:
+	for entry in _replay_buttons.duplicate():
+		var button = entry[0]
+		if not is_instance_valid(button):
+			_replay_buttons.erase(entry)
+			continue
+		var affordable = RunData.get_player_gold(entry[1]) >= RunData.current_wave * 2
+		button.modulate = Color.white if affordable else Color(0.45, 0.45, 0.45, 1.0)
 
 
 func _ready() -> void:
@@ -182,9 +193,16 @@ func _nightgrind_add_replay_button(
 		[player_index]
 	)
 
-	visible_next_button.text = "NEXT " + str(RunData.get_next_wave())
-	replay_button.text = "REPLAY " + str(RunData.current_wave)
-	replay_button.hint_tooltip = "Replay wave " + str(RunData.current_wave)
+	var replay_cost = RunData.current_wave * 2
+	_nightgrind_button_content(
+		visible_next_button, "Wave " + str(RunData.get_next_wave()), "(Continue)", null
+	)
+	var reroll = shop.call("_get_reroll_button", player_index)
+	var gold_icon = reroll.find_node("GoldIcon", true, false) if reroll != null else null
+	_nightgrind_button_content(replay_button, "Wave " + str(RunData.current_wave),
+		str(replay_cost), gold_icon)
+	replay_button.hint_tooltip = "Replay costs " + str(replay_cost) + " materials"
+	_replay_buttons.append([replay_button, player_index])
 	_nightgrind_sync_focus(
 		shop,
 		visible_next_button,
@@ -192,6 +210,48 @@ func _nightgrind_add_replay_button(
 		player_index,
 		next_button
 	)
+
+
+func _nightgrind_button_content(button: Button, title: String, detail: String, icon: Node) -> void:
+	button.text = ""
+	var font = button.get_font("font").duplicate()
+	if font is DynamicFont:
+		font.size = 22
+	var rows = VBoxContainer.new()
+	rows.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	rows.set_anchors_and_margins_preset(Control.PRESET_WIDE)
+	rows.alignment = BoxContainer.ALIGN_CENTER
+	rows.add_constant_override("separation", 0)
+	button.add_child(rows)
+	var heading = Label.new()
+	heading.text = title
+	heading.align = Label.ALIGN_CENTER
+	heading.add_font_override("font", font)
+	rows.add_child(heading)
+	var line = HBoxContainer.new()
+	line.alignment = BoxContainer.ALIGN_CENTER
+	rows.add_child(line)
+	var value = Label.new()
+	value.text = detail
+	value.add_font_override("font", font)
+	line.add_child(value)
+	button.connect("mouse_entered", self, "_nightgrind_button_colors", [button, heading, value])
+	button.connect("mouse_exited", self, "_nightgrind_button_colors", [button, heading, value])
+	button.connect("focus_entered", self, "_nightgrind_button_colors", [button, heading, value])
+	button.connect("focus_exited", self, "_nightgrind_button_colors", [button, heading, value])
+	_nightgrind_button_colors(button, heading, value)
+	if icon != null:
+		var copy = icon.duplicate()
+		copy.rect_min_size = Vector2(24, 24)
+		copy.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		line.add_child(copy)
+
+
+func _nightgrind_button_colors(button: Button, heading: Label, value: Label) -> void:
+	var active = button.is_hovered() or button.has_focus()
+	var color = button.get_color("font_color_hover" if active else "font_color")
+	heading.add_color_override("font_color", color)
+	value.add_color_override("font_color", color)
 
 
 func _nightgrind_sync_focus(
@@ -241,6 +301,14 @@ func _nightgrind_on_next_pressed(shop: Node, player_index: int) -> void:
 	if get_tree().paused:
 		return
 	_nightgrind_prepare_action(shop, "next")
+	var replay_available = true
+	for index in RunData.get_player_count():
+		if RunData.get_player_gold(index) < RunData.current_wave * 2:
+			replay_available = false
+			break
+	if not replay_available:
+		shop.call("_on_GoButton_pressed", player_index)
+		return
 	var source_button: Button = shop.call("_get_go_button", player_index) as Button
 	if source_button == null:
 		return
@@ -349,6 +417,10 @@ func _nightgrind_on_replay_pressed(shop: Node, player_index: int) -> void:
 	if pressed_players[player_index]:
 		shop.call("_clear_go_button_pressed", player_index)
 		return
+	var replay_cost = RunData.current_wave * 2
+	if RunData.get_player_gold(player_index) < replay_cost:
+		UIService._reached_max_shake(shop.call("_get_gold_label", player_index).get_parent())
+		return
 
 	pressed_players[player_index] = true
 	var checkmark: Control = shop.call("_get_checkmark", player_index)
@@ -358,6 +430,12 @@ func _nightgrind_on_replay_pressed(shop: Node, player_index: int) -> void:
 	for other_player_index in RunData.get_player_count():
 		if not pressed_players[other_player_index]:
 			return
+		if RunData.get_player_gold(other_player_index) < replay_cost:
+			shop.call("_clear_go_button_pressed", other_player_index)
+			return
+
+	for other_player_index in RunData.get_player_count():
+		RunData.remove_gold(replay_cost, other_player_index)
 
 	ProgressData.save_run_state(
 		shop.get("_shop_items"),

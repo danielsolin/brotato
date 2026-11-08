@@ -15,8 +15,8 @@ The NightGrind Workshop description is kept in
 
 - Nightmare is the only difficulty available.
 - Dropped materials are reduced to one third of the usual amount on average.
-- After a wave, choose **Replay** to play it again or **Next** to advance.
-  Advancing asks for confirmation.
+- Replay a wave for materials equal to twice its number, or advance for free.
+  Advancing asks for confirmation when replay is affordable.
 - Harvesting has no effect, including negative Harvesting.
 - Automatic material attraction and Lootworm are disabled.
 - Materials left at the end of a wave disappear.
