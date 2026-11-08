@@ -8,6 +8,8 @@ Three mods for Brotato's built-in ModLoader. The manifests target Brotato
 Turn Brotato into a grind: replay a wave to build your character before taking
 on the next one.
 
+[Subscribe on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836266944)
+
 - Nightmare is the only difficulty available.
 - Dropped materials are reduced to one third of the usual amount on average.
 - After a wave, choose **Replay** to play it again or **Next** to advance.
@@ -31,9 +33,9 @@ Reroll shop offers and level-up upgrades for free.
 
 ## Installation
 
-These mods are provided as source. To build a ZIP, install Python 3, download
-this repository, and run the command for the mod you want from the repository
-directory:
+To install NightGrind, subscribe on Steam Workshop. To build a local ZIP for
+any of the mods, install Python 3, download this repository, and run the
+command for the mod you want from the repository directory:
 
 ```sh
 python3 scripts/package_mod.py DanielSolin-NightGrind
