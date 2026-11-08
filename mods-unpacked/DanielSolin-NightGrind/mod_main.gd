@@ -10,6 +10,7 @@ func _init() -> void:
 	var extensions_dir = mod_dir_path.plus_file("extensions")
 	for extension in [
 		"main.gd",
+		"singletons/run_data.gd",
 		"ui/menus/run/difficulty_selection/difficulty_selection.gd"
 	]:
 		ModLoaderMod.install_script_extension(extensions_dir.plus_file(extension))

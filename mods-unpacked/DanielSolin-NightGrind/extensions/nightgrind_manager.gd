@@ -11,8 +11,20 @@ func _ready() -> void:
 
 
 func _on_node_added(node: Node) -> void:
+	if node.name == "HarvestingContainer":
+		call_deferred("_nightgrind_dim_harvesting", node)
 	if node.name == "Shop" or node.name == "CoopShop":
 		call_deferred("_nightgrind_setup_shop", node)
+
+
+func _nightgrind_dim_harvesting(node: Node) -> void:
+	if not is_instance_valid(node):
+		return
+	if node.get("key") != "STAT_HARVESTING":
+		return
+	var control: Control = node as Control
+	if control != null:
+		control.modulate = Color(0.65, 0.65, 0.65, 0.65)
 
 
 func _nightgrind_setup_current_scene() -> void:
