@@ -10,7 +10,8 @@ on the next one.
 
 [Subscribe on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836266944)
 
-The current Workshop description is kept in [steam-description.txt](steam-description.txt).
+The NightGrind Workshop description is kept in
+[DanielSolin-NightGrind-steam-description.txt](DanielSolin-NightGrind-steam-description.txt).
 
 - Nightmare is the only difficulty available.
 - Dropped materials are reduced to one third of the usual amount on average.
