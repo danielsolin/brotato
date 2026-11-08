@@ -13,14 +13,10 @@ on the next one.
 - After a wave, choose **Replay** to play it again or **Next** to advance.
   Advancing asks for confirmation.
 - Harvesting has no effect, including negative Harvesting.
-- Pick up dropped materials by moving over them. Materials left on the ground
-  at the end of a wave disappear.
-- Automatic material attraction and Lootworm are disabled. Baby Gecko,
-  Sifd's Relic and Lootworm are excluded from the shop.
+- Automatic material attraction and Lootworm are disabled.
+- Materials left at the end of a wave disappear.
 
-Items you already own remain in your inventory. These three items can still
-appear in crates, and their descriptions still mention disabled effects.
-Other effects on Baby Gecko and Sifd's Relic still work.
+Items with disabled effects can still appear in crates with their original descriptions.
 
 ## RelatedEffects
 
