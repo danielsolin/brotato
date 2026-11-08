@@ -45,8 +45,12 @@ func _nightgrind_setup_shop(shop: Node) -> void:
 	var shop_id: int = shop.get_instance_id()
 	_shop_actions[shop_id] = ""
 	shop.connect("tree_exiting", self, "_nightgrind_forget_shop", [shop_id])
+	_nightgrind_filter_shop_offers(shop)
 
 	for player_index in RunData.get_player_count():
+		var reroll_button: Button = shop.call("_get_reroll_button", player_index)
+		if reroll_button != null:
+			reroll_button.connect("pressed", self, "_nightgrind_on_reroll", [shop])
 		var next_button: Button = shop.call(
 			"_get_go_button",
 			player_index
@@ -54,6 +58,48 @@ func _nightgrind_setup_shop(shop: Node) -> void:
 		if next_button == null:
 			continue
 		_nightgrind_add_replay_button(shop, next_button, player_index)
+
+
+func _nightgrind_on_reroll(shop: Node) -> void:
+	call_deferred("_nightgrind_filter_shop_offers", shop)
+
+
+func _nightgrind_filter_shop_offers(shop: Node) -> void:
+	if not is_instance_valid(shop):
+		return
+	var shop_items: Array = shop.get("_shop_items")
+	var locks_changed = false
+	for player_index in RunData.get_player_count():
+		var locked: Array = RunData.locked_shop_items[player_index]
+		for index in range(locked.size() - 1, -1, -1):
+			if ItemService.call("_nightgrind_blocked_item", locked[index][0]):
+				locked.remove(index)
+				locks_changed = true
+
+		var offers: Array = shop_items[player_index]
+		var removed = 0
+		for index in range(offers.size() - 1, -1, -1):
+			if ItemService.call("_nightgrind_blocked_item", offers[index][0]):
+				offers.remove(index)
+				removed += 1
+		if removed == 0:
+			continue
+
+		var args = ItemServiceGetShopItemsArgs.new(shop_items, player_index)
+		args.count = removed
+		args.prev_items = offers.duplicate()
+		args.locked_items = RunData.get_player_locked_shop_items(player_index)
+		offers.append_array(ItemService.get_player_shop_items(
+			RunData.current_wave,
+			player_index,
+			args
+		))
+		var container: Control = shop.call("_get_shop_items_container", player_index)
+		if container != null:
+			container.call("set_shop_items", offers)
+		locks_changed = true
+	if locks_changed:
+		shop.call("_update_visual_locks")
 
 
 func _nightgrind_add_replay_button(

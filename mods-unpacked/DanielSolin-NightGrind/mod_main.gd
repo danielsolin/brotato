@@ -13,6 +13,7 @@ func _init() -> void:
 		"effects/items/lootworm_effect.gd",
 		"global/entity_spawner.gd",
 		"items/materials/gold.gd",
+		"singletons/item_service.gd",
 		"singletons/run_data.gd",
 		"ui/menus/run/difficulty_selection/difficulty_selection.gd"
 	]:
