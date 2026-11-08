@@ -1,7 +1,7 @@
 {
   "name": "NightGrind",
   "namespace": "DanielSolin",
-  "version_number": "0.1.8",
+  "version_number": "0.1.9",
   "description": "Forces Nightmare and lets you replay cleared waves.",
   "website_url": "https://github.com/danielsolin/brotato",
   "dependencies": [],
