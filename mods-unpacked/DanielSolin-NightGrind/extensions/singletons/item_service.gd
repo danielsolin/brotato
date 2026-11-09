@@ -5,7 +5,8 @@ func _nightgrind_blocked_item(item) -> bool:
 		return false
 	for effect in item.effects:
 		if effect != null and effect.key in [
-				"stat_harvesting", "pickup_range", "instant_gold_attracting"
+				"stat_harvesting", "harvesting_growth", "pickup_range",
+				"instant_gold_attracting"
 			]:
 			return true
 	return false
