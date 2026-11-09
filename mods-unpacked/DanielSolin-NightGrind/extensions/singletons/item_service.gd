@@ -1,25 +1,34 @@
 extends "res://singletons/item_service.gd"
 
-const NIGHTGRIND_BLOCKED_ITEMS = [
-	"item_baby_gecko",
-	"item_sifds_relic",
-	"item_lootworm"
-]
-
-var _nightgrind_shop_generation = false
-
-
 func _nightgrind_blocked_item(item) -> bool:
-	return item != null and item.my_id in NIGHTGRIND_BLOCKED_ITEMS
+	if item == null or not item is ItemData:
+		return false
+	for effect in item.effects:
+		if effect != null and effect.key in [
+				"stat_harvesting", "pickup_range", "instant_gold_attracting"
+			]:
+			return true
+	return false
 
 
 func get_pool(item_tier: int, type: int) -> Array:
 	var pool: Array = .get_pool(item_tier, type)
-	if _nightgrind_shop_generation and type == TierData.ITEMS:
+	if type == TierData.ITEMS:
 		for index in range(pool.size() - 1, -1, -1):
 			if _nightgrind_blocked_item(pool[index]):
 				pool.remove(index)
 	return pool
+
+
+func update_pools(
+		pool: Array, backup_pool: Array, player_index: int, item_tier: int, type: int
+	) -> void:
+	.update_pools(pool, backup_pool, player_index, item_tier, type)
+	if type == TierData.ITEMS:
+		for items in [pool, backup_pool]:
+			for index in range(items.size() - 1, -1, -1):
+				if _nightgrind_blocked_item(items[index]):
+					items.remove(index)
 
 
 func get_player_shop_items(
@@ -33,14 +42,11 @@ func get_player_shop_items(
 	)
 	var original_guarantees = guarantees.duplicate()
 	for index in range(guarantees.size() - 1, -1, -1):
-		for item_id in NIGHTGRIND_BLOCKED_ITEMS:
-			if guarantees[index][0] == Keys.generate_hash(item_id):
-				guarantees.remove(index)
-				break
+		var item = get_element(get_items(), guarantees[index][0])
+		if _nightgrind_blocked_item(item):
+			guarantees.remove(index)
 
-	_nightgrind_shop_generation = true
 	var offers: Array = .get_player_shop_items(wave, player_index, args)
-	_nightgrind_shop_generation = false
 	guarantees.clear()
 	guarantees.append_array(original_guarantees)
 	for index in range(offers.size() - 1, -1, -1):

@@ -14,10 +14,12 @@ on the next one.
 - Dropped materials are reduced to one third of the usual amount on average.
 - Replay a wave for materials equal to twice its number, or advance as usual.
 - Harvesting has no effect, including negative Harvesting.
-- Automatic material attraction and Lootworm are disabled.
+- Pickup range is fixed at +100%.
+- Instant material attraction is disabled.
 - Materials left at the end of a wave disappear.
 
-Items with disabled effects can still appear in crates with their original descriptions.
+Items that directly affect Harvesting, pickup range, or instant material attraction
+are excluded from shops and crates.
 
 ## RelatedEffects
 

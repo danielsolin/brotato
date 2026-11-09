@@ -5,7 +5,8 @@ Turn Brotato into a grind!
 - Nightmare only.
 - One third material drops.
 - No Harvesting.
-- No automatic material attraction.
+- Fixed +100% pickup range.
+- No instant material attraction.
 - Uncollected materials disappear at wave end.
 
 For Brotato 1.2.0.1.
