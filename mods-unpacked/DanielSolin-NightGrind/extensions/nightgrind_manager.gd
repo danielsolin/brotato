@@ -155,6 +155,7 @@ func _nightgrind_add_replay_button(
 
 	var replay_button: Button = next_button.duplicate(0) as Button
 	replay_button.name = "NightGrindReplayButton" + str(player_index)
+	replay_button.icon = null
 	replay_button.set_script(next_button.get_script())
 	var replay_min_size = replay_button.rect_min_size
 	replay_min_size.y = button_height
@@ -201,7 +202,7 @@ func _nightgrind_add_replay_button(
 	var gold_icon = reroll.find_node("GoldIcon", true, false) if reroll != null else null
 	_nightgrind_button_content(replay_button, "Wave " + str(RunData.current_wave),
 		str(replay_cost), gold_icon)
-	replay_button.hint_tooltip = "Replay costs " + str(replay_cost) + " materials"
+	replay_button.hint_tooltip = ""
 	_replay_buttons.append([replay_button, player_index])
 	_nightgrind_sync_focus(
 		shop,
