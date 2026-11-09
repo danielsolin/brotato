@@ -11,7 +11,7 @@ on the next one.
 [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3836266944)
 
 - Nightmare is the only difficulty available.
-- Dropped materials are reduced to one third of the usual amount on average.
+- Dropped materials are reduced to half the usual amount on average.
 - Replay a wave for materials equal to twice its number, or advance as usual.
 - Harvesting has no effect, including negative Harvesting.
 - Pickup range is fixed at 0%.

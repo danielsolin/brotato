@@ -3,7 +3,7 @@ Turn Brotato into a grind!
 - Replay waves to build your character.
 - Replay costs twice the wave number in materials.
 - Nightmare only.
-- One third material drops.
+- Half material drops.
 - No Harvesting.
 - Fixed 0% pickup range.
 - No instant material attraction.
