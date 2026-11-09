@@ -3,13 +3,36 @@ extends "res://singletons/item_service.gd"
 func _nightgrind_blocked_item(item) -> bool:
 	if item == null or not item is ItemData:
 		return false
-	for effect in item.effects:
+	return _nightgrind_has_blocked_effect(item)
+
+
+func _nightgrind_blocked_upgrade(upgrade) -> bool:
+	if upgrade == null or not upgrade is UpgradeData:
+		return false
+	return _nightgrind_has_blocked_effect(upgrade)
+
+
+func _nightgrind_has_blocked_effect(data) -> bool:
+	for effect in data.effects:
 		if effect != null and effect.key in [
 				"stat_harvesting", "harvesting_growth", "pickup_range",
 				"instant_gold_attracting"
 			]:
 			return true
 	return false
+
+
+func get_upgrades(level: int, number: int, old_upgrades: Array, player_index: int) -> Array:
+	_nightgrind_filter_level_upgrades()
+	return .get_upgrades(level, number, old_upgrades, player_index)
+
+
+func _nightgrind_filter_level_upgrades() -> void:
+	for tier_data in _tiers_data:
+		var upgrades: Array = tier_data[TierData.UPGRADES]
+		for index in range(upgrades.size() - 1, -1, -1):
+			if _nightgrind_blocked_upgrade(upgrades[index]):
+				upgrades.remove(index)
 
 
 func get_pool(item_tier: int, type: int) -> Array:
