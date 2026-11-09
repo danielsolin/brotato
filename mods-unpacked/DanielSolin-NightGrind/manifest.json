@@ -1,7 +1,7 @@
 {
   "name": "NightGrind",
   "namespace": "DanielSolin",
-  "version_number": "0.1.18",
+  "version_number": "0.1.19",
   "description": "Turn Brotato into a grind!\n\n- Replay waves to build your character.\n- Replay costs twice the wave number in materials.\n- Nightmare only.\n- One third material drops.\n- No Harvesting.\n- Fixed 0% pickup range.\n- No instant material attraction.\n- Uncollected materials disappear at wave end.",
   "website_url": "https://github.com/danielsolin/brotato",
   "dependencies": [],

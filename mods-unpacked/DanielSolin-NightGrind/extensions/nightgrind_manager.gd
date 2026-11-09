@@ -31,7 +31,7 @@ func _on_node_added(node: Node) -> void:
 func _nightgrind_dim_stat(node: Node) -> void:
 	if not is_instance_valid(node):
 		return
-	if node.get("key") not in ["STAT_HARVESTING", "PICKUP_RANGE"]:
+	if not node.get("key") in ["STAT_HARVESTING", "PICKUP_RANGE"]:
 		return
 	var control: Control = node as Control
 	if control != null:
