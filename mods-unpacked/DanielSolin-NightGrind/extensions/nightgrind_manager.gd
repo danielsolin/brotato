@@ -22,16 +22,16 @@ func _ready() -> void:
 
 
 func _on_node_added(node: Node) -> void:
-	if node.name == "HarvestingContainer":
-		call_deferred("_nightgrind_dim_harvesting", node)
+	if node.name in ["HarvestingContainer", "PickupRangeContainer"]:
+		call_deferred("_nightgrind_dim_stat", node)
 	if node.name == "Shop" or node.name == "CoopShop":
 		call_deferred("_nightgrind_setup_shop", node)
 
 
-func _nightgrind_dim_harvesting(node: Node) -> void:
+func _nightgrind_dim_stat(node: Node) -> void:
 	if not is_instance_valid(node):
 		return
-	if node.get("key") != "STAT_HARVESTING":
+	if node.get("key") not in ["STAT_HARVESTING", "PICKUP_RANGE"]:
 		return
 	var control: Control = node as Control
 	if control != null:

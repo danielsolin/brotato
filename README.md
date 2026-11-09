@@ -14,7 +14,7 @@ on the next one.
 - Dropped materials are reduced to one third of the usual amount on average.
 - Replay a wave for materials equal to twice its number, or advance as usual.
 - Harvesting has no effect, including negative Harvesting.
-- Pickup range is fixed at +100%.
+- Pickup range is fixed at 0%.
 - Instant material attraction is disabled.
 - Materials left at the end of a wave disappear.
 

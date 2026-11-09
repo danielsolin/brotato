@@ -11,7 +11,7 @@ func get_player_effect(key: int, player_index: int):
 	if key == Keys.instant_gold_attracting_hash:
 		return 0
 	if key == Keys.pickup_range_hash:
-		return 100
+		return 0
 	return .get_player_effect(key, player_index)
 
 
