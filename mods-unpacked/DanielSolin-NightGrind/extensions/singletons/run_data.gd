@@ -13,11 +13,3 @@ func get_player_effect(key: int, player_index: int):
 	if key == Keys.pickup_range_hash:
 		return 0
 	return .get_player_effect(key, player_index)
-
-
-func get_nb_pets(player_index: int) -> int:
-	var count: int = .get_nb_pets(player_index)
-	for pet in get_player_effect(Keys.stat_pets_hash, player_index):
-		if pet is LootwormEffect:
-			count -= 1
-	return count

@@ -15,7 +15,7 @@ on the next one.
 - Replay a wave for materials equal to twice its number, or advance as usual.
 - Harvesting has no effect, including negative Harvesting.
 - Pickup range is fixed at 0%.
-- Instant material attraction is disabled.
+- Player-wide instant material attraction is disabled.
 - Materials left at the end of a wave disappear.
 
 Items that directly affect Harvesting, pickup range, or instant material attraction

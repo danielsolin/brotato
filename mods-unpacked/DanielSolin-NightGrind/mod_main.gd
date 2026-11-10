@@ -10,8 +10,6 @@ func _init() -> void:
 	var extensions_dir = mod_dir_path.plus_file("extensions")
 	for extension in [
 		"main.gd",
-		"effects/items/lootworm_effect.gd",
-		"global/entity_spawner.gd",
 		"singletons/item_service.gd",
 		"singletons/run_data.gd",
 		"ui/menus/run/difficulty_selection/difficulty_selection.gd"
